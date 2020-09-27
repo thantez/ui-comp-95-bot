@@ -3,7 +3,7 @@
 # This program is dedicated to the public domain under the CC0 license.
 
 # Imports
-from cloudinary import uploader, config
+from cloudinary import uploader, config, utils
 import logging
 from os import getenv
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
@@ -11,9 +11,14 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, Callb
 
 # Constants
 TELEGRAM_BOT_TOKEN = getenv('UI_BOT_TOKEN')
+
+# -- Cloudinary
 CLOUDINARY_API_KEY = getenv('CLOUDINARY_API_KEY')
 CLOUDINARY_API_SECRET = getenv('CLOUDINARY_API_SECRET')
 CLOUDINARY_API_NAME = getenv('CLOUDINARY_API_NAME')
+
+# -- Admins
+ADMINS = getenv('UI_BOT_ADMINS').split(',')
 
 # -- Keyboards
 TERM_KEYBOARD = [
@@ -69,7 +74,20 @@ def start(update, context):
         'تو می‌تونی هر جوری که دلت می‌خواد، مثلا به صورت عکس یا فایل، چیزی که می‌خوای رو بفرستی.\n'
         'برای شروع کار، /send رو بفرست.\n'
         'اگه وسط کار دلت خواست لغو کنی، /cancel رو بفرست.\n'
+        'مخفیانه بهت بگم که با /download می‌تونی همه عکسا رو دانلود کنی.\n'
+        '(ایح ایح ایح ایح 😈)\n'
         'همین دیگه. برو بریم!\n')
+
+def download(update, context):
+    """Send a link of gathered infos and medias to downloading them."""
+    user = update.message.from_user
+
+    if str(user.id) in ADMINS:
+        url = utils.download_zip_url(prefixes="/")
+        update.message.reply_text(url)
+    else:
+        logger.info(f"A new user want be admin! its id: {user.id}")
+        update.message.reply_text('کی گفته بهت این دستور کار می‌کنه؟')
 
 # -- Filters
 def photo(update, context):
@@ -116,6 +134,7 @@ def main():
     dp = updater.dispatcher
 
     dp.add_handler(CommandHandler("start", start))
+    dp.add_handler(CommandHandler("download", download))
     dp.add_handler(CallbackQueryHandler(button))
     dp.add_handler(MessageHandler(Filters.photo, photo))
     dp.add_handler(MessageHandler(Filters.document, document))
