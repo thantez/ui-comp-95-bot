@@ -100,6 +100,21 @@ def download(update, context):
         logger.info(f"A new user want be admin! its id: {user.id} - {user.username}")
         update.message.reply_text('کی گفته بهت این دستور کار می‌کنه؟')
 
+def description(update, context):
+    "Send description message."
+    update.message.reply_text(
+        'سلام سلام'
+        'سال 95 همین روزا ( 7 و 8 مهر ) بود که ثبت‌نام کردیم و با همدیگه هم‌کلاسی شدیم و الان 4 سال ازون روز می‌گذره. ترم آخر و این کرونا نگذاشت که بیشتر کنار هم باشیم و ترم آخری که همه می‌خواستیم بترکونیمش یه جور دیگه ترکید و اینقدر طول کشید که حتی از فارغ‌التحصیلی فقط اسمش بهمون رسید نه جشنش.'
+        'ما هم تصمیم گرفتیم که حداقل یک سری از صحنه‌های ماندگاری که این 4 سال برامون مونده رو جمع‌آوری کنیم و یه ویدیو ازش بسازیم که بعدها اگر چند سال دیگه اونو دیدیم فارغ از حال اون روزامون، کمی حالمون عوض شه.'
+        'بچه‌ها زحمت کشیدن یه بات درست کردن (@ui_chizmiz_gathering_bot) که عکساتونو اونجا بفرستید. فقط یه چندتا نکته راجبش میگم:'
+        '▪️شما می‌تونید عکس، ویدیو، گیف و فایل بفرستید.'
+        '▪️ویدیوی قاب آخر هم ساخته میشه، به این صورت که یه عکس تازه (!) از خودتون بگیرید و بفرستید برای قاب‌آخر مهندسی کامپیوتر 95.'
+        '▪️بعد از فرستادن عکس، عکسای خاطره‌انگیز رو ترمش رو مشخص کنید و اگر مربوط به قاب آخره قاب‌آخر رو انتخاب کنید.'
+        '▪️در مورد ویدئوی خاطرات ،سعی کنید عکساییو بفرستید که به درد ویدئو بخوره. عکس‌هایی مث عکسای دسته‌جمعی، لحظات خاص پروژه‌ها، خوابیدنای سر کلاس، عکسای یهویی باحال و کلی چیز دیگه که به ذهنم نمیرسه و تو گوشیاتون دارید😁'
+        '▪️سعی کنید حجم فایلاتونم از 10 مگ بیشتر نشه که اجازه نمیده بات.😅 اگر دیدید که هیچ‌جوره کمتر از 10 مگ نمیشه به آیدی من (@Colourful_boy) بفرستیدش.'
+        'پیشاپیش از همکاریتون مرسی'
+    )
+
 # -- Filters
 def photo(update, context):
     """Get User's photo."""
@@ -117,7 +132,7 @@ def photo(update, context):
             reply_markup=TERM_MARKUP)
 
 def video(update, context):
-    """Get User's photo."""
+    """Get User's video."""
     video = update.message.video
     video_id = video.file_id
     video_size = video.file_size
@@ -132,7 +147,7 @@ def video(update, context):
             reply_markup=TERM_MARKUP)
 
 def document(update, context):
-    """Get User's photo."""
+    """Get User's document."""
     document = update.message.document
     document_id = document.file_id
     document_size = document.file_size
@@ -176,6 +191,7 @@ def main():
 
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("download", download))
+    dp.add_handler(CommandHandler("description", description))
     dp.add_handler(CallbackQueryHandler(button))
     dp.add_handler(MessageHandler(Filters.photo, photo))
     dp.add_handler(MessageHandler(Filters.video, video))
