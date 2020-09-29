@@ -12,7 +12,7 @@ from time import time
 
 # Constants
 TELEGRAM_BOT_TOKEN = getenv('UI_BOT_TOKEN')
-PORT = int(os.environ.get('PORT', 5000))
+PORT = int(environ.get('PORT', 5000))
 
 # -- Cloudinary
 CLOUDINARY_API_KEY = getenv('CLOUDINARY_API_KEY')
