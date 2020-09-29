@@ -5,7 +5,7 @@
 # Imports
 from cloudinary import uploader, config, utils
 import logging
-from os import getenv
+from os import getenv, environ
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackQueryHandler
 from time import time
