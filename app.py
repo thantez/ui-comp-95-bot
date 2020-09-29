@@ -176,7 +176,7 @@ def button(update, context):
     message = query.message
     user = message.chat
     photo = message.photo or list([None])
-    file = photo[0] or message.video or message.document
+    file = photo[-1] or message.video or message.document
     file_url = file.get_file().file_path
 
     upload(file_url, user, query.data, context)
