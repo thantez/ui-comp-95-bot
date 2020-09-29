@@ -135,7 +135,8 @@ def photo(update, context):
     else:
         update.message.reply_photo(
             photo_id,
-            caption='خب. گرفتمش. حالا بگو این مربوط به ترم چنده؟',
+            caption='خب. گرفتمش. حالا بگو این مربوط به ترم چنده؟'
+                    '(لطفا فقط یه بار روی دکمه مورد نظرت بزن، من یه ذره کندذهنم طول میکشه بگیرمش 😅)',
             reply_markup=TERM_MARKUP)
 
 def video(update, context):
@@ -150,7 +151,8 @@ def video(update, context):
     else:
         update.message.reply_video(
             video_id,
-            caption='خب. گرفتمش. حالا بگو این مربوط به ترم چنده؟',
+            caption='خب. گرفتمش. حالا بگو این مربوط به ترم چنده؟'
+                    '(لطفا فقط یه بار روی دکمه مورد نظرت بزن، من یه ذره کندذهنم طول میکشه بگیرمش 😅)',
             reply_markup=TERM_MARKUP)
 
 def document(update, context):
@@ -166,7 +168,7 @@ def document(update, context):
         update.message.reply_document(
             document_id,
             caption='خب. گرفتمش. حالا بگو این مربوط به ترم چنده؟'
-                    '(لطفا فقط یه بار روی ترم بزن، من یه ذره کندذهنم طول میکشه بگیرمش 😅)',
+                    '(لطفا فقط یه بار روی دکمه مورد نظرت بزن، من یه ذره کندذهنم طول میکشه بگیرمش 😅)',
             reply_markup=TERM_MARKUP)
 
 # -- Callback query
