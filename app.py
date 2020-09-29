@@ -201,9 +201,9 @@ def main():
 
     updater.start_webhook(listen="0.0.0.0",
         port=int(PORT),
-        url_path=TOKEN)
+        url_path=TELEGRAM_BOT_TOKEN)
 
-    updater.bot.setWebhook('https://ui-comp-bot.herokuapp.com/' + TOKEN)
+    updater.bot.setWebhook('https://ui-comp-bot.herokuapp.com/' + TELEGRAM_BOT_TOKEN)
     logger.info("Bot started successfully!")
     updater.idle()
 
