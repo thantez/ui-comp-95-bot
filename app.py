@@ -165,7 +165,8 @@ def document(update, context):
     else:
         update.message.reply_document(
             document_id,
-            caption='خب. گرفتمش. حالا بگو این مربوط به ترم چنده؟',
+            caption='خب. گرفتمش. حالا بگو این مربوط به ترم چنده؟'
+                    '(لطفا فقط یه بار روی ترم بزن، من یه ذره کندذهنم طول میکشه بگیرمش 😅)',
             reply_markup=TERM_MARKUP)
 
 # -- Callback query
