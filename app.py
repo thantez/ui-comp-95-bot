@@ -25,20 +25,20 @@ ADMINS = getenv('UI_BOT_ADMINS').split(',')
 # -- Keyboards
 TERM_KEYBOARD = [
     [
-        InlineKeyboardButton('ترم ۱', callback_data='Term 1'),
         InlineKeyboardButton('ترم ۲', callback_data='Term 2')
+        InlineKeyboardButton('ترم ۱', callback_data='Term 1'),
     ],
     [
-        InlineKeyboardButton('ترم ۳', callback_data='Term 3'),
         InlineKeyboardButton('ترم ۴', callback_data='Term 4')
+        InlineKeyboardButton('ترم ۳', callback_data='Term 3'),
     ],
     [
-        InlineKeyboardButton('ترم ۵', callback_data='Term 5'),
         InlineKeyboardButton('ترم ۶', callback_data='Term 6')
+        InlineKeyboardButton('ترم ۵', callback_data='Term 5'),
     ],
     [
-        InlineKeyboardButton('ترم ۷', callback_data='Term 7'),
         InlineKeyboardButton('ترم ۸', callback_data='Term 8')
+        InlineKeyboardButton('ترم ۷', callback_data='Term 7'),
     ],
     [
         InlineKeyboardButton('قاب آخر', callback_data='Final Frame'),
