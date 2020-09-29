@@ -94,8 +94,15 @@ def download(update, context):
     user = update.message.from_user
 
     if str(user.id) in ADMINS:
-        url = utils.download_zip_url(prefixes="/")
-        update.message.reply_text(url)
+        images_url = utils.download_zip_url(prefixes="/", resource_type="image")
+        videos_url = utils.download_zip_url(prefixes="/", resource_type="video")
+        update.message.reply_text(
+            'لینک دانلود آماده شد:\n'
+            'برای دانلود تصاویر:\n'
+            f'{images_url}\n'
+            'برای دانلود فیلم‌ها:\n'
+            f'{videos_url}'
+        )
     else:
         logger.info(f"A new user want be admin! its id: {user.id} - {user.username}")
         update.message.reply_text('کی گفته بهت این دستور کار می‌کنه؟')
