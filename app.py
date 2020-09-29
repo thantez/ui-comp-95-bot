@@ -12,6 +12,7 @@ from time import time
 
 # Constants
 TELEGRAM_BOT_TOKEN = getenv('UI_BOT_TOKEN')
+PORT = int(os.environ.get('PORT', 5000))
 
 # -- Cloudinary
 CLOUDINARY_API_KEY = getenv('CLOUDINARY_API_KEY')
@@ -65,7 +66,7 @@ def upload(link, user, term, context):
     try:
         uuid = str(time())
         path = f'ui_comp/{term}/{user.id} {user.username} _{user.first_name} {user.last_name}_ {uuid}'
-        
+
         uploader.upload(link, public_id = path, resource_type="auto")
         for admin in ADMINS:
             context.bot.send_message(admin,
@@ -182,7 +183,11 @@ def main():
     dp.add_handler(MessageHandler(Filters.document.category("video"), document))
     dp.add_handler(MessageHandler(Filters.all, other))
 
-    updater.start_polling()
+    updater.start_webhook(listen="0.0.0.0",
+        port=int(PORT),
+        url_path=TOKEN)
+
+    updater.bot.setWebhook('https://ui-comp-bot.herokuapp.com/' + TOKEN)
     logger.info("Bot started successfully!")
     updater.idle()
 
